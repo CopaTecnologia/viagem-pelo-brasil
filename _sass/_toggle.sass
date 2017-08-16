@@ -1,0 +1,23 @@
+.toggle-input
+    position: fixed
+    top: -100%
+    left: -100%
+    opacity: 0
+    visibility: hidden
+
+    &:not(:checked)
+        + .toggle-content
+            opacity: 0
+            transform: translate(-100%)
+
+    &:checked
+        + .toggle-content
+            ~ .toggle-content
+                transform: translate(100%)
+
+.toggle-content
+    position: absolute
+    left: $spacing-unit
+    opacity: 1
+    transform: translate(0)
+    transition: .6s ease-in-out

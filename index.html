@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<section class="page-content" id="intro">
+
+  <header class="site-title">
+    <h1>{{ site.title }}</h1>
+    <h2>{{ site.subtitle }}</h2>
+  </header>
+
+  <div class="tabs" data-grid="start">
+
+    {% for item in site.intro %}
+
+    <label for="toggle-{{ item.name }}" data-cell="shrink">{{ item.title }}</label>
+
+    {% endfor %}
+
+  </div>
+
+  {% for item in site.intro %}
+
+  <input type="radio" name="page-tabs" id="toggle-{{ item.name }}" class="toggle-input" {% if forloop.first == true %}checked=""{% endif %}>
+  <article class="tab-content toggle-content" id="{{ item.name }}">
+    <h2>{{ item.title }}</h2>
+    {{ item.content }}
+  </article>
+
+  {% endfor %}
+
+</section>

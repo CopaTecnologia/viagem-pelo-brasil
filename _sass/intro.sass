@@ -1,0 +1,25 @@
+#intro
+    background:
+        image: url('/img/90H.jpg')
+        repeat: no-repeat
+        position: right
+        size: cover
+
+.tabs
+    margin-top: $spacing-unit
+    label
+        display: inline-block
+        padding: 1em
+        margin-right: 1px
+        font-family: $title-font-family
+        color: $brand-color
+        background-color: $background-color
+        border-bottom: 5px solid $brand-color
+        cursor: pointer
+
+.tab-content
+    max-width: 42em
+    padding: 1em
+    background-color: rgba($background-color, .5)
+    +media-greater($on-laptop)
+        margin-right: 20em

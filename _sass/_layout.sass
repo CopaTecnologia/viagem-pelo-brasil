@@ -1,0 +1,116 @@
+.site-header 
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    z-index: 9999
+    padding-left: $spacing-unit
+    padding-right: $spacing-unit
+    +media-query($on-palm)
+        padding-left: $spacing-unit / 2
+        padding-right: $spacing-unit / 2
+
+.site-title 
+    font-weight: 300
+    line-height: 1
+    letter-spacing: -1px
+    h1
+        margin-bottom: 0
+    h2
+        font-size: 1.4em
+
+.site-nav 
+    position: absolute
+    top: $spacing-unit / 2
+    right: $spacing-unit / 2
+    padding: 20px
+    background-color: $background-color
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.5)
+    transform: rotate(1deg)
+
+    .menu-link
+        display: block
+        padding: 10px
+        font:
+            size: 28px
+            weight: bold
+        color: $grey-color
+
+    .page-link 
+        display: block
+        padding: 5px 10px
+        &:hover, &:focus, &:active
+            background-color: $ui-bg-color
+            text-decoration: none
+
+    +media-query($on-laptop)
+
+        .trigger 
+            clear: both
+            display: none
+            padding-bottom: 5px
+
+        &:hover .trigger 
+            display: block
+
+.site-footer 
+    border-top: 1px solid $grey-color-light
+    padding: $spacing-unit 0
+
+.footer-heading 
+    font-size: 18px
+    margin-bottom: $spacing-unit / 2
+
+.page-content 
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 99
+    padding: $spacing-unit
+
+.page-heading 
+    font-size: 20px
+
+.post-list 
+    margin-left: 0
+    list-style: none
+    >li 
+        margin-bottom: $spacing-unit
+
+.post-meta 
+    font-size: $small-font-size
+    color: $grey-color
+
+.post-link 
+    display: block
+    font-size: 24px
+
+.post-header 
+    margin-bottom: $spacing-unit
+
+.post-title 
+    font-size: 42px
+    letter-spacing: -1px
+    line-height: 1
+    @include media-query($on-laptop) 
+        font-size: 36px
+
+.post-content 
+    margin-bottom: $spacing-unit
+    h2 
+        font-size: 32px
+        @include media-query($on-laptop) 
+            font-size: 28px
+
+    h3 
+        font-size: 26px
+        @include media-query($on-laptop) 
+            font-size: 22px
+
+    h4 
+        font-size: 20px
+        @include media-query($on-laptop) 
+            font-size: 18px
+

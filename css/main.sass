@@ -1,0 +1,30 @@
+---
+---
+@charset "utf-8"
+
+$base-font-family: 'Anonymous Pro', monospace
+$title-font-family: 'Open Sans Condensed', sans-serif
+$base-font-size:   16px
+$base-font-weight: 400
+$small-font-size:  $base-font-size * 0.875
+$base-line-height: 1.5
+
+$spacing-unit:     30px
+
+$text-color:       #111
+$background-color: #fdfdfd
+$brand-color:      #009955
+$ui-bg-color:      #fff1a8
+
+$grey-color:       #828282
+$grey-color-light: lighten($grey-color, 40%)
+$grey-color-dark:  darken($grey-color, 25%)
+
+$content-width:    800px
+$on-palm:          600px
+$on-laptop:        800px
+
+%transitions
+  transition: .5s ease-in-out
+
+@import mixins, base, grid, toggle, layout, intro
