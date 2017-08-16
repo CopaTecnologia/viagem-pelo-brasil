@@ -1,0 +1,2 @@
+# viagem-pelo-brasil
+Este livro encerra aventuras fantásticas de alguns adolescentes que, preparados para uma viagem de férias, não imaginavam que passariam por inusitadas e inacreditáveis situações. Primeiramente, houve a divulgação do projeto em cada sala, para explicar aos alunos como a atividade seria realizada... O narrador, em 3ª ou 1ª pessoa, conduzirá o leitor para o lugar onde caíram. Considerando a introdução oferecida (veja a sinopse), cada grupo deu  continuidade ao enredo, revelando as primeiras impressões do lugar e algo incrível que encontraram lá.
