@@ -11,15 +11,45 @@
         display: inline-block
         padding: 1em
         margin-right: 1px
-        font-family: $title-font-family
+        font:
+            family: $title-font-family
+            weight: bold
         color: $brand-color
-        background-color: $background-color
-        border-bottom: 5px solid $brand-color
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        background-color: rgba($background-color, .7)
         cursor: pointer
+        position: relative
+        &, &:after
+            transition: .3s ease-in-out
+        &:after
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            border-top: 5px solid rgba($brand-color, 0)
+            transform: translateY(100%)
+
+        +media-greater($on-palm)
+            opacity: .5
+            &:hover, &:focus
+                opacity: .9
+        +media-query($on-palm)
+            background-color: $background-color
+
+        &.active
+            border-top-color: $brand-color
+            opacity: 1
+            &:after
+                border-top-color: $brand-color
+                transform: translateY(0)
 
 .tab-content
     max-width: 42em
     padding: 1em
-    background-color: rgba($background-color, .5)
+    background-color: rgba($background-color, .7)
     +media-greater($on-laptop)
         margin-right: 20em
