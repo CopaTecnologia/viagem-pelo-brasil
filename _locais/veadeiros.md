@@ -1,5 +1,5 @@
 ---
-title: Chapada dos Veadeiros (Vale da Lua)
+title: Chapada dos Veadeiros
 uf: GO
 lat: -14.038866
 lng: -47.622971
