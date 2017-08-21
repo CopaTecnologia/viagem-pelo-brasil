@@ -2,6 +2,23 @@
 layout: default
 ---
 
+<div class="site-header">
+
+  <div id="mapa"></div>
+
+  <nav class="site-nav">
+    <a href="#" class="menu-link">Locais</a>
+    <div class="trigger">
+
+      {% for local in site.locais %}
+        <a class="page-link" href="#{{ local.id | remove: '/locais/' }}">{{ local.title }}</a>
+      {% endfor %}
+
+    </div>
+  </nav>
+
+</div>
+
 <section class="page-content" id="intro">
 
   <header class="site-title">
@@ -26,6 +43,19 @@ layout: default
     <h2>{{ item.title }}</h2>
     {{ item.content }}
   </article>
+
+  {% endfor %}
+
+</section>
+
+<section class="#places">
+
+  {% for local in site.locais %}
+
+    <div id="{{ local.id | remove: '/locais/' }}" data-lat="{{ local.lat }}" data-lng="{{ local.lng }}">
+      <h4>{{ local.title }} - {{ local.uf }}</h4>
+      {{ local.content }}
+    </div>
 
   {% endfor %}
 
