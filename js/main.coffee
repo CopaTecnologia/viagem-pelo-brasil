@@ -74,21 +74,44 @@ window.addEventListener 'load', (e) -> onHashChange(e)
 window.addEventListener 'hashchange', (e) -> onHashChange(e)
 
 onHashChange = ->
+    _place = $(location.hash)[0]
     if location.hash and (place = document.querySelector location.hash)
         mapBrowser.setMarker location.hash
     else
         mapBrowser.center()
+    _($ '#places article' ).forEach (place) ->
+        if place is _place
+            place.classList.add 'on'
+            place.classList.remove 'off'
+        else
+            place.classList.add 'off'
+            place.classList.remove 'on'
 
 menuLink = mapBrowser.nav.querySelector '#btn-open-places'
 menuLinkText = menuLink.textContent
+places = _($ '#places article' )
+places.forEach (place) ->
+    place.classList.add 'off'
+    place.classList.remove 'on'
 
 closeMenu = ->
     mapBrowser.close()
     menuLink.textContent = menuLinkText
+    places.forEach (place) ->
+        place.classList.add 'off'
+        place.classList.remove 'on'
 
 openMenu = ->
     mapBrowser.open()
     menuLink.textContent = '⨉'
+    _place = $(location.hash)[0]
+    places.forEach (place) ->
+        if place is _place
+            place.classList.add 'on'
+            place.classList.remove 'off'
+        else
+            place.classList.add 'off'
+            place.classList.remove 'on'
 
 if not location.hash
     closeMenu()

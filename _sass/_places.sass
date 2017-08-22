@@ -1,6 +1,6 @@
 .places-menu
     position: fixed
-    top: 0
+    top: $spacing-unit
     right: $spacing-unit
     z-index: 99999
     padding: 10px 30px
@@ -8,7 +8,7 @@
     box-shadow: 0 10px 30px 0 rgba(0,0,0,0.5)
     transform-origin: top left
     transform: rotate(5deg) translateY($spacing-unit)
-    transition: transform .5s ease-in-out
+    transition: transform .3s ease-in-out
 
     +media-query($on-palm)
         top: -$spacing-unit / 2
@@ -43,10 +43,12 @@
         padding-bottom: 20px
 
     &.off
-        transform: translateY(-10%) scale(1.2)
+        transform: translate(-20%, -10%) scale(1.2)
         +media-query($on-palm)
+            top: 0
+            right: 0
             padding-top: 30px
-            transform: translateY(-10%) scale(.8)
+            transform: translateY(-20%) scale(.8)
         .menu-link
             color: $brand-color
         .trigger 
@@ -74,13 +76,13 @@
                 box-shadow: 0 10px 30px 0 rgba(#000, 0.5)
                 transition: .5s ease-in-out
 
-            &:not(:target)
+            &.off
                 z-index: -1
                 > *
                     opacity: 0
                     transform: translate(-50%) rotate(-10deg)
 
-            &:target
+            &.on
                 z-index: 9999
                 > *
                     transform: translate(0) rotate(-3deg)
@@ -94,3 +96,6 @@
     &:hover, &:focus
         color: $brand-color
         text-decoration: none
+    
+    +media-query($on-palm)
+        display: none
