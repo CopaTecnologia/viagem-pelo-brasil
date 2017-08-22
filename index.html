@@ -47,12 +47,32 @@ layout: default
 <section id="places">
 
   {% for local in site.locais %}
-    <article class="page-content" id="{{ local.id | remove: '/locais/' }}" data-lat="{{ local.lat }}" data-lng="{{ local.lng }}">
+    {% assign local_id = local.id | remove: '/locais/' %}
+    <article class="page-content" id="{{ local_id }}" data-lat="{{ local.lat }}" data-lng="{{ local.lng }}">
   
       <div>
         <a href="#⨉" class="btn-close">⨉</a>
-        <h4>{{ local.title }} - {{ local.uf }}</h4>
+        <h3>{{ local.title }} - {{ local.uf }}</h3>
         {{ local.content }}
+      </div>
+
+      <div class="relatos">
+
+        <h4>Relatos neste local</h4>
+
+        {% for post in site.relatos %}
+          {% if post.name == local_id %}
+
+          <article>
+            <h5>{{ post.title }}</h5>
+            <section>
+              {{ post.content }}
+            </section>
+          </article>
+
+          {% endif %}
+        {% endfor %}
+
       </div>
   
     </article>

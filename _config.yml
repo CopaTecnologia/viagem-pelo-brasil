@@ -28,3 +28,5 @@ collections:
     output: false
   intro:
     output: false
+  relatos:
+    output: false
