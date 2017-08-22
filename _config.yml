@@ -11,8 +11,11 @@ description: >
 baseurl: "/viagem-pelo-brasil"
 url: "http://copatecnologia.com.br"
 
-# Build settings
 markdown: kramdown
+
+exclude:
+  - gulpfile.js
+  - README.md
 
 css:
   style: compressed

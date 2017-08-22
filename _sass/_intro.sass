@@ -1,9 +1,33 @@
 #intro
+    padding: $spacing-unit
     background:
         image: url('#{$base-url}/img/90H.jpg')
         repeat: no-repeat
         position: right
         size: cover
+
+    +media-query($on-palm)
+        min-height: 720px
+        padding: $spacing-unit / 2
+
+    +media-greater($on-palm)
+        position: fixed
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
+        z-index: 99
+        overflow-x: hidden
+        overflow-y: auto
+
+.site-title 
+    font-weight: 300
+    line-height: 1
+    letter-spacing: -1px
+    h1
+        margin-bottom: 0
+    h2
+        font-size: 1.4em
 
 .tabs
     margin-top: $spacing-unit
@@ -51,5 +75,5 @@
     max-width: 42em
     padding: 1em
     background-color: rgba($background-color, .7)
-    +media-greater($on-laptop)
+    +media-greater($on-palm)
         margin-right: 20em

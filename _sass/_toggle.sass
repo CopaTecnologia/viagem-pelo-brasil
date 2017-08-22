@@ -9,6 +9,8 @@
         + .toggle-content
             opacity: 0
             transform: translate(-100%)
+            +media-query($on-palm)
+                display: none
 
     &:checked
         + .toggle-content
@@ -21,3 +23,5 @@
     opacity: 1
     transform: translate(0)
     transition: .6s ease-in-out
+    +media-query($on-palm)
+        left: $spacing-unit / 2

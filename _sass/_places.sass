@@ -1,0 +1,83 @@
+.places-menu
+    position: fixed
+    top: 0
+    right: $spacing-unit
+    z-index: 99999
+    padding: 10px 30px
+    background-color: $background-color
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.5)
+    transform-origin: top left
+    transform: rotate(5deg) translateY($spacing-unit)
+    transition: transform .5s ease-in-out
+
+    +media-query($on-palm)
+        top: -$spacing-unit / 2
+        right: $spacing-unit / 2
+        padding: $spacing-unit / 2
+
+        &.no-js
+            display: none
+
+    .menu-link, .page-link
+        display: inline-block
+        padding: 5px 10px
+        &:hover, &:focus, &:active
+            text-decoration: none
+
+    .menu-link
+        font:
+            size: 28px
+            weight: bold
+        float: right
+        color: $grey-color
+        transition: none
+
+    .page-link 
+        display: block
+        &:hover, &:focus, &:active
+            background-color: $ui-bg-color
+
+    .trigger 
+        clear: both
+        display: block
+        padding-bottom: 20px
+
+    &.off
+        transform: translate(0) scale(.8)
+        .menu-link
+            color: $brand-color
+        .trigger 
+            display: none
+
+#places
+    .page-content
+        > *
+            padding: $spacing-unit
+
+    +media-greater($on-palm)
+
+        .page-content
+            position: fixed
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            overflow-y: auto
+            transform: translate(0)
+            > *
+                max-width: 22em
+                margin-right: 350px
+                background-color: $background-color
+                box-shadow: 0 10px 30px 0 rgba(#000, 0.5)
+                transition: .5s ease-in-out
+
+            &:not(:target)
+                z-index: -1
+                > *
+                    opacity: 0
+                    transform: translate(-50%) rotate(-10deg)
+
+            &:target
+                z-index: 999
+                > *
+                    transform: translate(0) rotate(-3deg)
