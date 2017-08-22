@@ -13,10 +13,11 @@ mapOptions =
     mapTypeId: google.maps.MapTypeId.TERRAIN
     zoom: 5
 
-mapContainer = document.querySelector '.site-header'
-if mapContent = document.getElementById 'mapa'
+mapContainer = document.getElementById 'map-container'
+if mapContent = document.getElementById 'map-content'
 
     map = new google.maps.Map(mapContent, mapOptions)
+    mapContent.style.height = '100%'
     infoMarker = new google.maps.Marker()
     infoWindows = document.querySelectorAll '#places [data-lat][data-lng]'
     markers = Array.prototype.map.call infoWindows, (place) ->
@@ -34,9 +35,13 @@ if mapContent = document.getElementById 'mapa'
 
     setMarkers = ->
 
-        if (place = document.querySelector location.hash) and (place.getAttribute 'data-lat') and (place.getAttribute 'data-lng')
+        if location.hash and (place = document.querySelector location.hash) and (lat = place.getAttribute 'data-lat') and (lng = place.getAttribute 'data-lng')
 
-            console.log place
+            map.panTo(
+                lat: Number lat
+                lng: Number lng
+            )
+            map.setZoom mapOptions.zoom + 2
 
         else
 
@@ -44,3 +49,20 @@ if mapContent = document.getElementById 'mapa'
             map.setZoom mapOptions.zoom
             infoMarker.setIcon icon.plane
             infoMarker.setAnimation null
+
+
+
+menuLink = document.getElementById 'btn-open-places'
+menuLinkText = menuLink.textContent
+menuLink.addEventListener 'click', (e) ->
+    e.preventDefault()
+    siteNav = document.querySelector('.site-nav')
+    if siteNav.classList.contains('open')
+        location.hash = ''
+        mapContainer.classList.remove 'open'
+        siteNav.classList.remove 'open'
+        menuLink.textContent = menuLinkText
+    else
+        mapContainer.classList.add 'open'
+        siteNav.classList.add 'open'
+        menuLink.textContent = '⨉'

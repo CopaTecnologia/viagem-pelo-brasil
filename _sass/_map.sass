@@ -1,0 +1,12 @@
+#map-container, .map-overlay
+    transition: transform .6s ease-in-out
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 999
+    transform: translate(-100%)
+
+    &.open, .map-overlay
+        transform: translate(0)
