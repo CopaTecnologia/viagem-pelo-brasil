@@ -1,18 +1,9 @@
 ---
 layout: default
 ---
-{% comment %} 
-
-  Adicionar o #map-container pelo javascript 
-
-{% endcomment %}
-<div id="map-container">
-  <div id="map-content"></div>
-  <div class="map-overlay"></div>
-</div>
 
 <nav class="places-menu no-js">
-  <a href="#" class="menu-link" id="btn-open-places">Locais</a>
+  <a href="#mapa" class="menu-link" id="btn-open-places">Locais</a>
   <div class="trigger">
 
     {% for local in site.locais %}
@@ -56,9 +47,10 @@ layout: default
 <section id="places">
 
   {% for local in site.locais %}
-    <article class="page-content" id="{{ local.id | remove: '/locais/' }}">
+    <article class="page-content" id="{{ local.id | remove: '/locais/' }}" data-lat="{{ local.lat }}" data-lng="{{ local.lng }}">
   
-      <div id="{{ local.id | remove: '/locais/' }}" data-lat="{{ local.lat }}" data-lng="{{ local.lng }}">
+      <div>
+        <a href="#⨉" class="btn-close">⨉</a>
         <h4>{{ local.title }} - {{ local.uf }}</h4>
         {{ local.content }}
       </div>

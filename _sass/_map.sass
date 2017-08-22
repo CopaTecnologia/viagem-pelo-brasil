@@ -7,8 +7,10 @@
         right: 0
         bottom: 0
         z-index: 999
-        transform: translate(-100%)
-
-    &.open, .map-overlay
         transform: translate(0)
 
+    &.off
+        transform: translate(-100%)
+
+    +media-query($on-palm)
+        top: 80%

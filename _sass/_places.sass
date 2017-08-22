@@ -43,7 +43,10 @@
         padding-bottom: 20px
 
     &.off
-        transform: translate(0) scale(.8)
+        transform: translateY(-10%) scale(1.2)
+        +media-query($on-palm)
+            padding-top: 30px
+            transform: translateY(-10%) scale(.8)
         .menu-link
             color: $brand-color
         .trigger 
@@ -78,6 +81,11 @@
                     transform: translate(-50%) rotate(-10deg)
 
             &:target
-                z-index: 999
+                z-index: 9999
                 > *
                     transform: translate(0) rotate(-3deg)
+
+.btn-close
+    position: absolute
+    top: $spacing-unit / 2
+    right: $spacing-unit / 2
