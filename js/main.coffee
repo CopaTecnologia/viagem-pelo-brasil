@@ -3,27 +3,8 @@
 
 $ = (selector) -> document.querySelectorAll selector
 _ = (nodes) -> Array.prototype.slice.call(nodes)
-$el = (tag, attrs) -> 
-    elem = document.createElement tag
-    return elem unless attrs?
-    for attr, val of attrs
-        elem[attr] = val
-    elem
-_viewport = ->
-    orientation = screen.orientation or screen.mozOrientation or screen.msOrientation
-    angle = orientation.angle or 0
-    pixelRatio = navigator.userAgent.indexOf 'Android' >= 0 and window.devicePixelRatio
-    width: ->
-        vw = if angle is 0 then window.screen.width else window.screen.height
-        if devicePixelRatio
-            vw = vw / window.devicePixelRatio
-        vw
-    height: ->
-        vh = if angle is 0 then window.screen.height else window.screen.width
-        if devicePixelRatio
-            vh = vh / window.devicePixelRatio
-        vh
 
+# Tabs navigation
 
 introTabs = _ $ '#intro .tabs label'
 introInputs = _ $ '#intro .toggle-input'
@@ -41,86 +22,36 @@ toggleTabs()
 introInputs.forEach (input) ->
     input.addEventListener 'change', -> toggleTabs()
 
+# Map browser
 
 mapBrowser.init
-    mapNavContainer: ->
-        mapNav = $( '.places-menu' )[0]
-        mapNav.classList.remove 'no-js'
-        mapNav
+
     createMapContainer: ->
-        mapContainer = $el 'div', 
-            id: 'map-container'
-            innerHTML: 
-                '''
-                <div id="map-content"></div>
-                <div class="map-overlay"></div>
-                '''
+        mapContainer    = document.createElement 'div'
+        mapContainer.id = 'map-container'
+        mapContainer.innerHTML =
+            '''
+            <div id="map-content"></div>
+            <div class="map-overlay"></div>
+            '''
         document.body.appendChild mapContainer
-        mapContainer
-    mapContent: ->
-        $('#map-container')[0].querySelector('#map-content')
+        mapContainer.querySelector('#map-content')
+
     mapMarkers: ->
-        infoWindows = $ '#places [data-lat][data-lng]'
-        Array.prototype.map.call infoWindows, (place) ->
+        mapBrowserUI.articles.map (place) ->
             position:
                 lat: Number place.getAttribute 'data-lat'
                 lng: Number place.getAttribute 'data-lng'
             map: mapBrowser.map
             zIndex: 9
-            icon: mapBrowser.icons.plane
+            icon: mapBrowserUI.icons.plane
             store_id: place.id
 
-window.addEventListener 'load', (e) -> onHashChange(e)
-window.addEventListener 'hashchange', (e) -> onHashChange(e)
+    ready: ->
+        window.addEventListener 'load', (e) -> onHashChange(e)
+        window.addEventListener 'hashchange', (e) -> onHashChange(e)
 
-onHashChange = ->
-    _place = $(location.hash)[0]
-    if location.hash and (place = document.querySelector location.hash)
-        mapBrowser.setMarker location.hash
-    else
-        mapBrowser.center()
-    _($ '#places article' ).forEach (place) ->
-        if place is _place
-            place.classList.add 'on'
-            place.classList.remove 'off'
-        else
-            place.classList.add 'off'
-            place.classList.remove 'on'
+        onHashChange = ->
+            mapBrowser.setMarker location.hash, mapBrowserUI.showArticle location.hash
 
-menuLink = mapBrowser.nav.querySelector '#btn-open-places'
-menuLinkText = menuLink.textContent
-places = _($ '#places article' )
-places.forEach (place) ->
-    place.classList.add 'off'
-    place.classList.remove 'on'
-
-closeMenu = ->
-    mapBrowser.close()
-    menuLink.textContent = menuLinkText
-    places.forEach (place) ->
-        place.classList.add 'off'
-        place.classList.remove 'on'
-
-openMenu = ->
-    mapBrowser.open()
-    menuLink.textContent = '⨉'
-    _place = $(location.hash)[0]
-    places.forEach (place) ->
-        if place is _place
-            place.classList.add 'on'
-            place.classList.remove 'off'
-        else
-            place.classList.add 'off'
-            place.classList.remove 'on'
-
-if not location.hash
-    closeMenu()
-else
-    menuLink.textContent = '⨉'
-
-menuLink.addEventListener 'click', (e) ->
-    e.preventDefault()
-    if mapBrowser.isOpen()
-        openMenu()
-    else
-        closeMenu()
+        mapBrowserUI.init()
