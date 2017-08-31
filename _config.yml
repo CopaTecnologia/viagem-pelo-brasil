@@ -20,7 +20,7 @@ exclude:
 css:
   style: compressed
 
-gems:
+plugins:
   - jekyll-coffeescript
 
 collections:
